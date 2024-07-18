@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Query</title>
+</head>
+<body>
+    <h1>LLM Query</h1>
+    <form action="/" method="post">
+        <label for="question">Enter your question:</label>
+        <input type="text" id="question" name="question">
+        <button type="submit">Submit</button>
+    </form>
+    {% if answer %}
+        <h2>Answer:</h2>
+        <p>{{ answer }}</p>
+    {% endif %}
+</body>
+</html>

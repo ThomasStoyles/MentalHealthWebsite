@@ -40,7 +40,7 @@ vectorstore = FAISS.from_documents(texts, embeddings)
 vectorstore.save_local("faiss")
 
 # Load the FAISS index and create a retriever
-db = FAISS.load_local("faiss", embeddings, allow_dangerous_deserialization=True)
+db = FAISS.load_local("faiss", embeddings)
 retriever = db.as_retriever(search_kwargs={'k': 1})
 
 # Define the template for the prompt

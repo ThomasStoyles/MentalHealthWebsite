@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
-from llm_module import query_llm, query, QA_LLM
+from query_llm import query_llm, query, QA_LLM
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 @app.route("/", methods=["GET", "POST"])
 def index():

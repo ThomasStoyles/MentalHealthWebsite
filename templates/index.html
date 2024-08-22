@@ -17,7 +17,7 @@
         </form>
         {% if answer %}
             <h2>Answer:</h2>
-            <p>{{ answer }}</p>
+            <p>{{ answer | safe }}</p>
         {% endif %}
     </div>
 </body>

@@ -44,13 +44,7 @@ db = FAISS.load_local("faiss", embeddings, allow_dangerous_deserialization=True)
 retriever = db.as_retriever(search_kwargs={'k': 1})
 
 # Define the template for the prompt
-template = """
-Given the following context, please answer the question.
-
-Context: {context}
-
-Question: {question}
-"""
+template = """ Context: {context} Question: {question} """
 prompt = PromptTemplate(
     template=template,
     input_variables=['context', 'question']
@@ -78,10 +72,13 @@ def query(model, question):
 
     # Extract and return the source document and response
     source_document = output['source_documents'][0].page_content
-    result = f"Response time: {time_elapsed:.02f} sec\n\n"
-    result += f"Question: {question}\n\n"
+    result = f"Response time: {time_elapsed:.02f} sec\n"
+    result += f"Question: {question}\n"
     result += f"Answer: {response}\n\n"
-    result += f"Source Document: {source_document}\n"
+    result += f"Source Document:\n {source_document}\n"
+
+    # Convert newlines to HTML <br> tags
+    result = result.replace("\n", "<br>")
 
     return result
 
